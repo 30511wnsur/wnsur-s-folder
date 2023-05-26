@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -36,25 +36,24 @@
       
 
       const configuration = new Configuration({
-        apiKey: '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',
-      });
-      const openai = new OpenAIApi(configuration);
+            apiKey: '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',
+            });
+            const openai = new OpenAIApi(configuration);
 
-      openai.createCompletion({
-        model: "text-davinci-002",
-        prompt: document.querySelector('#input').value,
-        temperature: 0.7,
-        max_tokens: 256,
-        top_p: 1,
-        frequency_penalty: 0,
-        presence_penalty: 0,
-      }).then()=>{console.log(text) 
-        var template = `<div class="line">
-        <span class="chat-box">${text}</span>
-        </div>`
-        document.querySelector('.chat-content').insertAdjacentHTML('beforeend', template);
-    
-    }
+            openai.createCompletion({
+                model: "text-davinci-002",
+                prompt: document.querySelector('#input').value,
+                temperature: 0.7,
+                max_tokens: 256,
+                top_p: 1,
+                frequency_penalty: 0,
+                presence_penalty: 0,
+                    }).then((result)=>{
+                        console.log(result.data.choices[0].text)
+                        var template = `<div class="line">
+                        <span class="chat-box">${ result.data.choices[0].text }</span></div>`
+                        document.querySelector('.chat-content').insertAdjacentHTML('beforeend', template);
+    })
     })
       
   </script>
